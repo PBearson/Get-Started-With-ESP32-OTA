@@ -18,6 +18,8 @@ Navigate to the "hello_world/" directory and run ```idf.py build```, which will 
 
 To specify the app version, run ```idf.py menuconfig``` and enable the option **Application Manager -> Get the project version from Kconfig**. Now a new option appears that says **Project version**, which is set to 1 by default. Leave it as is. Exit the config menu and make sure to save your changes. Re-run the build command ```idf.py build``` to incorporate these changes into the firmware. Copy this to the server directory by running ```cp build/hello-world.bin ../server/hello-world-unversioned.bin```.
 
+Optionally, you can run this firmware now to confirm that the app detects the version. Run ```idf.py flash monitor``` to upload the firmware and monitor the console output from the device. In the bootloader log, you should see the version detection, as shown below:
+
 ![Hello World Version 1](hello-world-version-1.png)
 
 ### App Version 2 / Security Version 1
