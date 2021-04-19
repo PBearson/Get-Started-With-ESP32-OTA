@@ -42,6 +42,8 @@ At this point, I would advise you to open a separate terminal window, since this
 
 ## Run the simple_ota_example Project
 
+Leave the server running and return to the original terminal. We are going to run the first OTA project now. Navigate to the "simple_ota_example" directory.
+
 ## Run the native_ota_example Project
 
 ## Run the advanced_https_ota Project
