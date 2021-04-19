@@ -50,8 +50,14 @@ Build and run the firmware using ```idf.py flash monitor```. The app will start 
 
 ## Run the native_ota_example Project
 
-TODO
+### Updating to a New App Version
+
+### Trying to Update to the Same App Version
+
+### Updating to a Previous App Version (No Anti-Rollback)
 
 ## Run the advanced_https_ota Project
 
-TODO
+### Updating to a New Security Version
+
+### Trying to Update to a Previous Security Version (Anti-Rollback)
