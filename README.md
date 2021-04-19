@@ -8,13 +8,15 @@ The purpose of OTA is to update the firmware of an IoT device (such as ESP32) re
 
 ## Prepare the OTA Firmware Images
 
-We are going to prepare 3 different versions of the "Hello World" firmware: 1) app version 1 without anti-rollback; app version 2 without anti-rollback; app version 3 with anti-rollback and security version 1.
+We are going to prepare 3 different versions of the "Hello World" firmware: 1) no version; 2) app version  without anti-rollback support; 3) app version 2 with anti-rollback support and security version 1.
+
+### Unversioned App
+
+Navigate to the "hello_world/" directory and run ```idf.py build```, which will build the "Hello World" binary. The binary will be generated in the "build/" directory, under the filename "hello-world.bin". To copy this image to our server directory, run ```cp build/hello-world.bin ../server/```.
 
 ### App Version 1
 
-### App Version 2
-
-### App Version 3
+### App Version 2 / Security Version 1
 
 ## Start the Web Server
 
