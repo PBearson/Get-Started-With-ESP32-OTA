@@ -26,6 +26,10 @@ Optionally, you can run this firmware now to confirm that the app detects the ve
 
 Now we will change the app version to 2 and add the anti-rollback support, which depends on a _security version_ that is separate from the app version. Open the config menu again by running ```idf.py menuconfig```. First change the app version by setting **Application Manager -> Project version** to 2. Now go to **Bootloader config** and enable the option **Enable app rollback support**. Note that this reveals a new option, **Enable app anti-rollback support**. Make sure to enable this new option. To set the security version, set **eFuse secure version of app** to 1. Finally, make sure to enable **Emulate operations with efuse secure version(only text)**. _If you do not do this, then the secure version is saved in the hardware efuse rather than the software, and the changes will be irreversible_.
 
+There is more to do before we leave the config. Navigate to **Partition Table -> Partition Table** and change it to "Custom partition table CS". Apps with anti-rollback support require a different partition table than the default. I have already added the required partition table in the file "partitions.csv".
+
+Now you can exit and save the changes to the configuration. Run ```idf.py build``` to rebuild "Hello World". 
+
 ## Start the Web Server
 
 ## Run the simple_ota_example Project
