@@ -3,3 +3,5 @@ sdkconfig*
 example_test.py
 Make*
 build/
+*.bin
+*.pem
