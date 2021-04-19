@@ -8,7 +8,7 @@ The purpose of OTA is to update the firmware of an IoT device (such as ESP32) re
 
 ## Prepare the OTA Firmware Images
 
-We are going to prepare 3 different versions of the "Hello World" firmware: 1) no version; 2) app version  without anti-rollback support; 3) app version 2 with anti-rollback support and security version 1.
+We are going to prepare 3 different versions of the "Hello World" firmware: 1) no version; 2) app version 1 without anti-rollback support; 3) app version 2 with anti-rollback support and security version 1.
 
 ### Unversioned App
 
