@@ -44,9 +44,9 @@ At this point, I would advise you to open a separate terminal window, since this
 
 Leave the server running and return to the original terminal. We are going to run the first OTA project now. Navigate to the "simple_ota_example" directory. Make a new directory called "server_certs" by running ```mkdir server_certs```. Now copy the server certificate to this new directory by running ```cp ../server/ca_cert.pem server_certs/```. This is necessary to authenticate the server during the TLS handshake.
 
-Open the config menu by running ```idf.py menuconfig```. Navigate to **Example Configuration*** and change **firmware upgrade url endpoint** to "https://_\<your IP\>_:8070/hello-world-unversioned.bin". Navigate to **Example Connection Configuration** and update the WiFi credentials with your SSID and password. Now exit the configuration and save your changes.
+Open the config menu by running ```idf.py menuconfig```. Navigate to **Example Configuration*** and change **firmware upgrade url endpoint** to "https://_\<your IP\>_:8070/hello-world-unversioned.bin". Navigate to **Example Connection Configuration** and update the WiFi credentials with your SSID and password. Finally, navigate to **Partition Table -> Partition Table** and change it "Factory app, two OTA definitions". Now exit the configuration and save your changes.
 
-Build and run the firmware using ```idf.py flash monitor```. 
+Build and run the firmware using ```idf.py flash monitor```. The app will start by running the OTA firmware, which will try to connect to your running HTTPS server. If all goes well, you will see the ESP32 download the "hello-world-unversioned.bin" firmware, reset the system, and begin running the updated firmware.
 
 ## Run the native_ota_example Project
 
