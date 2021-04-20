@@ -89,13 +89,17 @@ Second, when the firmware is running, after it connects to the HTTPS server and 
 
 ### Trying to Update to the Same App Version
 
-Now we will see what happens when the curent firmware and the new firmware have the same version. Change the value of "version.txt" to 1 by running ```echo 1 > version.txt```, and build and run your app using ```idf.py flash monitor```.
+Now we will see what happens when the current firmware and the new firmware have the same version. Change the value of "version.txt" to 1 by running ```echo 1 > version.txt```, and build and run your app using ```idf.py flash monitor```.
 
 You will notice that although the new firmware downloads successfully, we get a warning indicating that the new version is the same as the running version, so the OTA process does not complete:
 
 ![Native OTA Same Version](images/native-ota-same-version.JPG)
 
 ### Updating to a Previous App Version (No Anti-Rollback)
+
+Now we will see what happens when the current firmware has a larger app version than the new firmware. Change the value of "version.txt" to 2 by running ```echo 2 > version.txt```. Now build and run the app using ```idf.py flash monitor```.
+
+The OTA process completes successfully, and the "Hello World" app runs just fine. This indicates that the anti-rollback mechanism has not been implemented.
 
 ## Run the advanced_https_ota Project
 
