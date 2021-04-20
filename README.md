@@ -12,7 +12,7 @@ Before you move forward, make sure the provided Ubuntu VM uses the bridged adapt
 * VirtualBox Manager -> Ubuntu IoT -> Settings -> Network -> Adapter 1 -> Bridged Adapter
 
 For each example project, make sure you change the flash size to 4MB since the OTA needs more flash. Here is how you do it with the settings of an example project:
-* Serial flasher config -> Flash size to 4MB.
+* Settings -> Serial flasher config -> Flash size to 4MB.
 
 We will start a simple https web server using openssl. You can create a folder called "server" within /home/iot. The server folder will host the https web server's private key, self-signed certificate and the firmware for upgrading.
 
