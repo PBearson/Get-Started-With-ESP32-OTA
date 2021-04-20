@@ -87,15 +87,13 @@ Second, when the firmware is running, after it connects to the HTTPS server and 
 
 ![Native OTA Detect New Firmware](images/native-ota-detect-new-version.png)
 
-### Updating to a New App Version
+### Trying to Update to the Same App Version
 
 Now we will see what happens when the curent firmware and the new firmware have the same version. Change the value of "version.txt" to 1 by running ```echo 1 > version.txt```, and build and run your app using ```idf.py flash monitor```.
 
 You will notice that although the new firmware downloads successfully, we get a warning indicating that the new version is the same as the running version, so the OTA process does not complete:
 
 ![Native OTA Same Version](images/native-ota-same-version.JPG)
-
-### Trying to Update to the Same App Version
 
 ### Updating to a Previous App Version (No Anti-Rollback)
 
