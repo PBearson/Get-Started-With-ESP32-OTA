@@ -89,6 +89,8 @@ Second, when the firmware is running, after it connects to the HTTPS server and 
 
 ### Updating to a New App Version
 
+Now we will see what happens when the curent firmware and the new firmware have the same version. Change the value of "version.txt" to 1 by running ```echo 1 > version.txt```, and build and run your app using ```idf.py flash monitor```.
+
 ### Trying to Update to the Same App Version
 
 ### Updating to a Previous App Version (No Anti-Rollback)
