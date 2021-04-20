@@ -117,4 +117,6 @@ Open the config menu by running ```idf.py menuconfig``` and change the following
 * **Example Configuration -> Firmware Upgrade URL**: change to "https://_\<your IP\>_:8070/hello-world-version-2.bin"
 * **Example Connection Configuration**: set your WiFi SSID and WiFi Password
 
+Build and run the app using ```idf.py flash monitor```.
+
 ### Trying to Update to a Previous Security Version (Anti-Rollback)
