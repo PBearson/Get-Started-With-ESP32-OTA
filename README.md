@@ -64,6 +64,29 @@ Build and run the firmware using ```idf.py flash monitor```. The app will start 
 
 ## Run the native_ota_example Project
 
+Now we are going to run the second OTA project. Navigate to the "native_ota_example" directory. Create the "server_certs" directory and copy the server certificate to this new directory, just as before.
+
+The app version is stored in a text file called "version.txt" and will be compiled into the binary when we run the build command. By running the command ```cat version.txt```, we can see that the app version is currently set to 0. By contrast, recall that for "hello-world-version-1.bin", we set the app version to 1. We will see the effect of the OTA mechanism when the app version is increased, decreased, or remains the same.
+
+### Updating to a New App Version
+
+Open the config menu by running ```idf.py menuconfig``` and change the following settings:
+
+* **Serial flasher config -> Flash size**: change to 4 MB to support the larger image size.
+* **Partition Table -> Partition Table**: change to "Factory app, two OTA definitions"
+* **Example Configuration -> Firmware Upgrade URL**: change to "https://_\<your IP\>_:8070/hello-world-version-1.bin"
+* **Example Connection Configuration**: set your WiFi SSID and WiFi Password
+
+Build and run your app using ```idf.py flash monitor```.
+
+Although the process is very similar to the previous example, you may notice 2 points of interest. First, we can see that the app version is detected during the compilation, as shown in the output from the build step:
+
+![Native OTA Build](images/native-ota-initial-version.JPG)
+
+Second, when the firmware is running, after it connects to the HTTPS server and downloads the new firmware, we can see that it successfully detects the new app version (1) and compares it with the current app version (0), which prompts it to complete the OTA process and boot from the new firmware:
+
+![Native OTA Detect New Firmware](images/native-ota-detect-new-version.png)
+
 ### Updating to a New App Version
 
 ### Trying to Update to the Same App Version
