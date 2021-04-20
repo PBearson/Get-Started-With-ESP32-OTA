@@ -30,7 +30,7 @@ To specify the app version, run ```idf.py menuconfig``` and enable the option **
 
 Optionally, you can run this firmware now to confirm that the app detects the version. Run ```idf.py flash monitor``` to upload the firmware and monitor the console output from the device. In the bootloader log, you should see the version detection, as shown below:
 
-![Hello World Version 1](hello-world-version-1.png)
+![Hello World Version 1](./images/hello-world-version-1.png)
 
 ### App Version 2 / Security Version 1
 
