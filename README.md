@@ -124,3 +124,13 @@ When the app starts to run, you will see that the bootloader can correctly detec
 ![Advanced OTA Detect Version](images/advanced_https_ota_initial_secure_version.png)
 
 ### Trying to Update to a Previous Security Version (Anti-Rollback)
+
+Now we will change the security version and see what happens when we try to down-grade to a previous security version. Open the config menu again using ```idf.py menuconfig``` and make the following change:
+
+* **Bootloader config -> eFuse secure version of app**: change to 2
+
+Now build and run using ```idf.py flash monitor```.
+
+After the firmware connects to the server and downloads the OTA update, you will promptly be greeted with an error stating that the new firmware has a lower security version than the current firmware. Then the OTA update is deleted and the device reboots. This confirms that the anti-rollback mechanism works as intended.
+
+![Advanced OTA Anti-Rollback](images/advanced_https_ota_anti_rollback.JPG)
