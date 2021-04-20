@@ -105,6 +105,16 @@ The OTA process completes successfully, and the "Hello World" app runs just fine
 
 In the final 2 examples, we will run the last OTA project and see the anti-rollback mechanism in action.  Navigate to the "advanced_https_ota" directory. Create the "server_certs" directory and copy the server certificate to this new directory, just as before.
 
+Open the config menu by running ```idf.py menuconfig``` and change the following settings:
+
+* **Bootloader config -> Enable app rollback support**: enable
+* **Bootloader config -> Enable app anti-rollback support**: enable
+* **Bootloader config -> Emulate operations with efuse secure version(only test)**: enable (_**VERY IMPORTANT**_)
+* **Serial flasher config -> Flash size**: change to 4 MB to support the larger image size.
+* **Partition Table -> Partition Table**: change to "Custom partition table CSV"
+* **Example Configuration -> Firmware Upgrade URL**: change to "https://_\<your IP\>_:8070/hello-world-version-2.bin"
+* **Example Connection Configuration**: set your WiFi SSID and WiFi Password
+
 ### Updating to a New Security Version
 
 ### Trying to Update to a Previous Security Version (Anti-Rollback)
