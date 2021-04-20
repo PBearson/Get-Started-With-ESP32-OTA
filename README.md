@@ -8,6 +8,10 @@ The purpose of OTA is to update the firmware of an IoT device (such as ESP32) re
 
 We will see three examples. Aside from using different APIs, the major differences are that simple_ota_example does not do a version check, native_ota_example does a version check (but not anti-rollback, so older firmware versions can still be downloaded), and advanced_https_ota supports both version check and anti-rollback. advanced_https_ota can also detect if the firmware has not been fully downloaded.
 
+Within menuconfig, change Serial flasher config -> Flash size to 4MB.
+VirtualBox Manager -> Ubuntu IoT -> Settings -> Network -> Adapter 1 -> Bridged Adapter
+
+
 ## Prepare the OTA Firmware Images
 
 We are going to prepare 3 different versions of the "Hello World" firmware: 1) no version; 2) app version 1 without anti-rollback support; 3) app version 2 with anti-rollback support and security version 1.
