@@ -77,7 +77,13 @@ Open the config menu by running ```idf.py menuconfig``` and change the following
 
 Build and run your app using ```idf.py flash monitor```.
 
+Although the process is very similar to the previous example, you may notice 2 points of interest. First, we can see that the app version is detected during the compilation, as shown in the output from the build step:
 
+![Native OTA Build](images/native-ota-initial-version.JPG)
+
+Second, when the firmware is running, after it connects to the HTTPS server and downloads the new firmware, we can see that it successfully detects the new app version (1) and compares it with the current app version (0), which prompts it to complete the OTA process and boot from the new firmware:
+
+![Native OTA Detect New Firmware](images/native-ota-detect-new-version.png)
 
 ### Trying to Update to the Same App Version
 
