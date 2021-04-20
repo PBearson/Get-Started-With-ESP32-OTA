@@ -119,4 +119,8 @@ Open the config menu by running ```idf.py menuconfig``` and change the following
 
 Build and run the app using ```idf.py flash monitor```.
 
+When the app starts to run, you will see that the bootloader can correctly detect the security version, as shown below:
+
+![Advanced OTA Detect Version](images/advanced_https_ota_initial_secure_version.png)
+
 ### Trying to Update to a Previous Security Version (Anti-Rollback)
