@@ -123,9 +123,11 @@ When the app starts to run, you will see that the bootloader can correctly detec
 
 ![Advanced OTA Detect Version](images/advanced_https_ota_initial_secure_version.png)
 
+From here, the device should download and run the new firmware, which has a security version of 1.
+
 ### Trying to Update to a Previous Security Version (Anti-Rollback)
 
-Now we will change the security version and see what happens when we try to down-grade to a previous security version. Open the config menu again using ```idf.py menuconfig``` and make the following change:
+Now we will change the security version of the firmware and see what happens when we try to down-grade to a previous security version. Open the config menu again using ```idf.py menuconfig``` and make the following change:
 
 * **Bootloader config -> eFuse secure version of app**: change to 2
 
