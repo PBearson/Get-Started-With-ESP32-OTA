@@ -14,13 +14,15 @@ Before you move forward, make sure the provided Ubuntu VM uses the bridged adapt
 For each example project, make sure you change the flash size to 4MB since the OTA needs more flash. Here is how you do it with the settings of an example project:
 * Serial flasher config -> Flash size to 4MB.
 
+We will start a simple https web server using openssl. You can create a folder called "server" within /home/iot. The server folder will host the https web server's private key, self-signed certificate and the firmware for upgrading.
+
 ## Prepare the OTA Firmware Images
 
 We are going to prepare 3 different versions of the "Hello World" firmware: 1) no version; 2) app version 1 without anti-rollback support; 3) app version 2 with anti-rollback support and security version 1.
 
 ### Unversioned App
 
-Navigate to the "hello_world/" directory and run ```idf.py build```, which will build the "Hello World" binary. The binary will be generated in the "build/" directory, under the filename "hello-world.bin". To copy this image to our server directory, run ```cp build/hello-world.bin ../server/hello-world-unversioned.bin```.
+Navigate to the "hello_world/" directory and run ```idf.py build```, which will build the "Hello World" binary. The binary will be generated in the "build/" directory, under the filename "hello-world.bin". Please copy this image/firmware to our server directory /home/iot/server.
 
 ### App Version 1
 
@@ -28,7 +30,7 @@ To specify the app version, run ```idf.py menuconfig``` and enable the option **
 
 Optionally, you can run this firmware now to confirm that the app detects the version. Run ```idf.py flash monitor``` to upload the firmware and monitor the console output from the device. In the bootloader log, you should see the version detection, as shown below:
 
-![Hello World Version 1](images/hello-world-version-1.png)
+![Hello World Version 1](hello-world-version-1.png)
 
 ### App Version 2 / Security Version 1
 
@@ -40,7 +42,7 @@ Now you can exit and save the changes to the configuration. Run ```idf.py build`
 
 Optionally, you can run this firmware now to confirm that the app detects the version. Run ```idf.py erase_flash``` to erase the previous firmware off the chip. Then run ```idf.py flash monitor``` to upload the firmware and monitor the console output from the device. In the bootloader log, you should see both the app version and the security version, as shown below:
 
-![Hello World Version 2](images/hello-world-version-2.png)
+![Hello World Version 2](hello-world-version-2.png)
 
 ## Start the Web Server
 
@@ -62,28 +64,7 @@ Build and run the firmware using ```idf.py flash monitor```. The app will start 
 
 ## Run the native_ota_example Project
 
-Now we are going to run the second OTA project. Navigate to the "native_ota_example" directory. Create the "server_certs" directory and copy the server certificate to this new directory, just as before.
-
-The app version is stored in a text file called "version.txt" and will be compiled into the binary when we run the build command. By running the command ```cat version.txt```, we can see that the app version is currently set to 0. By contrast, recall that for "hello-world-version-1.bin", we set the app version to 1. We will see the effect of the OTA mechanism when the app version is increased, decreased, or remains the same.
-
 ### Updating to a New App Version
-
-Open the config menu by running ```idf.py menuconfig``` and change the following settings:
-
-* **Serial flasher config -> Flash size**: change to 4 MB to support the larger image size.
-* **Partition Table -> Partition Table**: change to "Factory app, two OTA definitions"
-* **Example Configuration -> Firmware Upgrade URL**: change to "https://_\<your IP\>_:8070/hello-world-version-1.bin"
-* **Example Connection Configuration**: set your WiFi SSID and WiFi Password
-
-Build and run your app using ```idf.py flash monitor```.
-
-Although the process is very similar to the previous example, you may notice 2 points of interest. First, we can see that the app version is detected during the compilation, as shown in the output from the build step:
-
-![Native OTA Build](images/native-ota-initial-version.JPG)
-
-Second, when the firmware is running, after it connects to the HTTPS server and downloads the new firmware, we can see that it successfully detects the new app version (1) and compares it with the current app version (0), which prompts it to complete the OTA process and boot from the new firmware:
-
-![Native OTA Detect New Firmware](images/native-ota-detect-new-version.png)
 
 ### Trying to Update to the Same App Version
 
