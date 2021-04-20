@@ -103,6 +103,8 @@ The OTA process completes successfully, and the "Hello World" app runs just fine
 
 ## Run the advanced_https_ota Project
 
+In the final 2 examples, we will run the last OTA project and see the anti-rollback mechanism in action.  Navigate to the "advanced_https_ota" directory. Create the "server_certs" directory and copy the server certificate to this new directory, just as before.
+
 ### Updating to a New Security Version
 
 ### Trying to Update to a Previous Security Version (Anti-Rollback)
