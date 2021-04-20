@@ -64,14 +64,75 @@ Build and run the firmware using ```idf.py flash monitor```. The app will start 
 
 ## Run the native_ota_example Project
 
+Now we are going to run the second OTA project. Navigate to the "native_ota_example" directory. Create the "server_certs" directory and copy the server certificate to this new directory, just as before.
+
+The app version is stored in a text file called "version.txt" and will be compiled into the binary when we run the build command. By running the command ```cat version.txt```, we can see that the app version is currently set to 0. By contrast, recall that for "hello-world-version-1.bin", we set the app version to 1. We will see the effect of the OTA mechanism when the app version is increased, decreased, or remains the same.
+
 ### Updating to a New App Version
+
+Open the config menu by running ```idf.py menuconfig``` and change the following settings:
+
+* **Serial flasher config -> Flash size**: change to 4 MB to support the larger image size.
+* **Partition Table -> Partition Table**: change to "Factory app, two OTA definitions"
+* **Example Configuration -> Firmware Upgrade URL**: change to "https://_\<your IP\>_:8070/hello-world-version-1.bin"
+* **Example Connection Configuration**: set your WiFi SSID and WiFi Password
+
+Build and run your app using ```idf.py flash monitor```.
+
+Although the process is very similar to the previous example, you may notice 2 points of interest. First, we can see that the app version is detected during the compilation, as shown in the output from the build step:
+
+![Native OTA Build](images/native-ota-initial-version.JPG)
+
+Second, when the firmware is running, after it connects to the HTTPS server and downloads the new firmware, we can see that it successfully detects the new app version (1) and compares it with the current app version (0), which prompts it to complete the OTA process and boot from the new firmware:
+
+![Native OTA Detect New Firmware](images/native-ota-detect-new-version.png)
 
 ### Trying to Update to the Same App Version
 
+Now we will see what happens when the current firmware and the new firmware have the same version. Change the value of "version.txt" to 1 by running ```echo 1 > version.txt```, and build and run your app using ```idf.py flash monitor```.
+
+You will notice that although the new firmware downloads successfully, we get a warning indicating that the new version is the same as the running version, so the OTA process does not complete:
+
+![Native OTA Same Version](images/native-ota-same-version.JPG)
+
 ### Updating to a Previous App Version (No Anti-Rollback)
+
+Now we will see what happens when the current firmware has a larger app version than the new firmware. Change the value of "version.txt" to 2 by running ```echo 2 > version.txt```. Now build and run the app using ```idf.py flash monitor```.
+
+The OTA process completes successfully, and the "Hello World" app runs just fine. This indicates that the anti-rollback mechanism has not been implemented.
 
 ## Run the advanced_https_ota Project
 
+In the final 2 examples, we will run the last OTA project and see the anti-rollback mechanism in action.  Navigate to the "advanced_https_ota" directory. Create the "server_certs" directory and copy the server certificate to this new directory, just as before.
+
 ### Updating to a New Security Version
 
+Open the config menu by running ```idf.py menuconfig``` and change the following settings:
+
+* **Bootloader config -> Enable app rollback support**: enable
+* **Bootloader config -> Enable app anti-rollback support**: enable
+* **Bootloader config -> Emulate operations with efuse secure version(only test)**: enable (_**VERY IMPORTANT**_)
+* **Serial flasher config -> Flash size**: change to 4 MB to support the larger image size.
+* **Partition Table -> Partition Table**: change to "Custom partition table CSV"
+* **Example Configuration -> Firmware Upgrade URL**: change to "https://_\<your IP\>_:8070/hello-world-version-2.bin"
+* **Example Connection Configuration**: set your WiFi SSID and WiFi Password
+
+Build and run the app using ```idf.py flash monitor```.
+
+When the app starts to run, you will see that the bootloader can correctly detect the security version, as shown below:
+
+![Advanced OTA Detect Version](images/advanced_https_ota_initial_secure_version.png)
+
+From here, the device should download and run the new firmware, which has a security version of 1.
+
 ### Trying to Update to a Previous Security Version (Anti-Rollback)
+
+Now we will change the security version of the firmware and see what happens when we try to down-grade to a previous security version. Open the config menu again using ```idf.py menuconfig``` and make the following change:
+
+* **Bootloader config -> eFuse secure version of app**: change to 2
+
+Now build and run using ```idf.py flash monitor```.
+
+After the firmware connects to the server and downloads the OTA update, you will promptly be greeted with an error stating that the new firmware has a lower security version than the current firmware. Then the OTA update is deleted and the device reboots. This confirms that the anti-rollback mechanism works as intended.
+
+![Advanced OTA Anti-Rollback](images/advanced_https_ota_anti_rollback.JPG)
