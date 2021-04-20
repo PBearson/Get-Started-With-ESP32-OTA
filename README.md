@@ -68,6 +68,17 @@ The app version is stored in a text file called "version.txt" and will be compil
 
 ### Updating to a New App Version
 
+Open the config menu by running ```idf.py menuconfig``` and change the following settings:
+
+* **Serial flasher config -> Flash size**: change to 4 MB to support the larger image size.
+* **Partition Table -> Partition Table**: change to "Factory app, two OTA definitions"
+* **Example Configuration -> Firmware Upgrade URL**: change to "https://_\<your IP\>_:8070/hello-world-version-1.bin"
+* **Example Connection Configuration**: set your WiFi SSID and WiFi Password
+
+Build and run your app using ```idf.py flash monitor```.
+
+
+
 ### Trying to Update to the Same App Version
 
 ### Updating to a Previous App Version (No Anti-Rollback)
