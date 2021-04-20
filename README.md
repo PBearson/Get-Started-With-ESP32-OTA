@@ -8,11 +8,11 @@ The purpose of OTA is to update the firmware of an IoT device (such as ESP32) re
 
 We will see three examples. Aside from using different APIs, the major differences are that simple_ota_example does not do a version check, native_ota_example does a version check (but not anti-rollback, so older firmware versions can still be downloaded), and advanced_https_ota supports both version check and anti-rollback. advanced_https_ota can also detect if the firmware has not been fully downloaded.
 
-Before you move forward, make sure the provided Ubuntu VM uses the bridged adapter so that it will get an IP, which will be in the same subnet of our IoT kit. Here is how you configure it.
+Before you move forward, make sure the provided Ubuntu VM uses the bridged adapter so that it will get an IP, which will be in the same subnet of our IoT kit. Here is how you configure it:
 * VirtualBox Manager -> Ubuntu IoT -> Settings -> Network -> Adapter 1 -> Bridged Adapter
 
-For each example project, make sure you change the flash size to 4MB since the OTA needs more flash. Here is how you do it withing settings of an example project
-* Within menuconfig, change Serial flasher config -> Flash size to 4MB.
+For each example project, make sure you change the flash size to 4MB since the OTA needs more flash. Here is how you do it with the settings of an example project:
+* change Serial flasher config -> Flash size to 4MB.
 
 ## Prepare the OTA Firmware Images
 
