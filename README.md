@@ -12,7 +12,10 @@ We will see three examples. Aside from using different APIs, the major differenc
 
 #### Downloading examples
 
+You can download all examples with the following command.
 * git clone --recursive https://github.com/PBearson/Get-Started-With-ESP32-OTA.git
+
+
 
 #### Bridged Adapter for Ubuntu
 Before you move forward, make sure the provided Ubuntu VM uses the bridged adapter so that it will get an IP, which will be in the same subnet of our IoT kit. Here is how you configure it:
