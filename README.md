@@ -10,12 +10,15 @@ We will see three examples. Aside from using different APIs, the major differenc
 
 ### Notes
 
+#### Bridged Adapter for Ubuntu
 Before you move forward, make sure the provided Ubuntu VM uses the bridged adapter so that it will get an IP, which will be in the same subnet of our IoT kit. Here is how you configure it:
 * VirtualBox Manager -> Ubuntu IoT -> Settings -> Network -> Adapter 1 -> Bridged Adapter
 
+#### Flash size
 For each example project, make sure you change the flash size to 4MB since the OTA needs more flash. Here is how you do it with the settings of an example project:
 * Settings -> Serial flasher config -> Flash size to 4MB.
 
+#### Simple https web server
 We will start a simple https web server using openssl. You can create a folder called "server" within /home/iot. The server folder will host the https web server's private key, self-signed certificate and the firmware for upgrading.
 
 ## Prepare the OTA Firmware Images
