@@ -13,7 +13,9 @@ We will see three examples. Aside from using different APIs, the major differenc
 #### Downloading examples
 
 You can download all examples with the following command.
-* git clone https://github.com/PBearson/Get-Started-With-ESP32-OTA.git
+```
+git clone https://github.com/PBearson/Get-Started-With-ESP32-OTA.git
+```
 
 But really, we only need the hello_world example since all other examples are part of the Espressif IoT Development Framework (esp-idf) already installed. But go ahead to download all examples in this repository so that you get the hello_world example easily. If interested, please refer to the [original OTA example docs](https://github.com/espressif/esp-idf/tree/master/examples/system/ota).
 
