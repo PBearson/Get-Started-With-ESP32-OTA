@@ -15,7 +15,7 @@ We will see three examples. Aside from using different APIs, the major differenc
 You can download all examples with the following command.
 * git clone --recursive https://github.com/PBearson/Get-Started-With-ESP32-OTA.git
 
-But really, we only need the hello_world example since all other examples are part of the Espressif IoT Development Framework (esp-idf) already installed. But go ahead to download all examples so that you get the hello_world example easily. If needed, please refer to the [original OTA example docs](https://github.com/espressif/esp-idf/tree/master/examples/system/ota).
+But really, we only need the hello_world example since all other examples are part of the Espressif IoT Development Framework (esp-idf) already installed. But go ahead to download all examples so that you get the hello_world example easily. If interested, please refer to the [original OTA example docs](https://github.com/espressif/esp-idf/tree/master/examples/system/ota).
 
 #### Bridged Adapter for Ubuntu
 Before you move forward, make sure the provided Ubuntu VM uses the bridged adapter so that it will get an IP, which will be in the same subnet of our IoT kit. Here is how you configure it:
