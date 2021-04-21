@@ -10,6 +10,10 @@ We will see three examples. Aside from using different APIs, the major differenc
 
 ### Notes
 
+#### Downloading examples
+
+* git clone --recursive https://github.com/PBearson/Get-Started-With-ESP32-OTA.git
+
 #### Bridged Adapter for Ubuntu
 Before you move forward, make sure the provided Ubuntu VM uses the bridged adapter so that it will get an IP, which will be in the same subnet of our IoT kit. Here is how you configure it:
 * VirtualBox Manager -> Ubuntu IoT -> Settings -> Network -> Adapter 1 -> Bridged Adapter
@@ -31,7 +35,7 @@ Navigate to the "hello_world/" directory and run ```idf.py build```, which will 
 
 ### App Version 1
 
-To specify the app version, run ```idf.py menuconfig``` and enable the option **Application Manager -> Get the project version from Kconfig**. Now a new option appears that says **Project version**, which is set to 1 by default. Leave it as is. Exit the config menu and make sure to **save your changes**. Re-run the build command ```idf.py build``` to incorporate these changes into the firmware. Please copy this image/firmware to the server directory /home/iot/server.
+To specify the app version, run ```idf.py menuconfig``` and enable the option **Application Manager -> Get the project version from Kconfig**. Now a new option appears that says **Project version**, which is set to 1 by default. Leave it as is. Exit the config menu and make sure to **save your changes**. Re-run the build command ```idf.py build``` to incorporate these changes into the firmware. Please copy this image/firmware, which is located in the  to the server directory /home/iot/server.
 
 Optionally, you can run this firmware now to confirm that the app detects the version. Run ```idf.py flash monitor``` to upload the firmware and monitor the console output from the device. In the bootloader log, you should see the version detection, as shown below:
 
