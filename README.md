@@ -1,4 +1,4 @@
-# Get Started With Secure ESP32 OTA through HTTPS
+# Secure ESP32 OTA through HTTPS
 
 ## Introduction
 
