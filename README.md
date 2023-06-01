@@ -50,9 +50,9 @@ Optionally, you can run this firmware now to confirm that the app detects the ve
 
 Now we will change the app version to 2 and add the anti-rollback support, which depends on a _security version_ that is separate from the app version. Open the config menu again by running ```idf.py menuconfig```. First change the app version by setting **Application Manager -> Project version** to 2. Now go to **Bootloader config** and enable the option **Enable app rollback support**. Note that this reveals a new option, **Enable app anti-rollback support**. Make sure to enable this new option. To set the security version, set **eFuse secure version of app** to 1. Finally, make sure to enable **Emulate operations with efuse secure version(only text)**. _If you do not do this, then the anti-rollback support and secure version are saved in the hardware efuse rather than the software, and the changes will be irreversible_.
 
-There is more to do before we leave the config. Navigate to **Partition Table -> Partition Table** and change it to "Custom partition table CS". Apps with anti-rollback support require a different partition table than the default. I have already added the required partition table in the file "partitions.csv".
+There is more to do before we leave the config. Navigate to **Partition Table -> Partition Table** and change it to "Custom partition table CS". Apps with anti-rollback support require a different partition table than the default. I have already added the required partition table in the file "partitions.csv". Next we need to increase the Partition Table Offset to 0x9000.
 
-Now you can exit and save the changes to the configuration. Run ```idf.py build``` to rebuild "Hello World". Copy this to the server directory by running ```cp build/hello-world.bin ../server/hello-world-version-2.bin```.
+Now you can exit and save the changes to the configuration. Run ```idf.py build``` to rebuild "Hello World". Copy this to the server directory by running ```cp build/hello-world.bin ~/server/hello-world-version-2.bin```.
 
 Optionally, you can run this firmware now to confirm that the app detects the version. Run ```idf.py erase_flash``` to erase the previous firmware off the chip. Then run ```idf.py flash monitor``` to upload the firmware and monitor the console output from the device. In the bootloader log, you should see both the app version and the security version, as shown below:
 
@@ -70,7 +70,7 @@ This will generate an RSA keypair and a self-signed server certificate. You will
 
 ## Run the simple_ota_example Project
 
-Leave the server running and return to the original terminal. We are going to run the first OTA project now. Navigate to the "simple_ota_example" directory. Make a new directory called "server_certs" under by running ```mkdir server_certs``` if you do not have one . Now copy the server certificate to this new directory by running ```cp ../server/ca_cert.pem server_certs/```. This is necessary to authenticate the server during the TLS handshake.
+Leave the server running and return to the original terminal. We are going to run the first OTA project now. Navigate to the "simple_ota_example" directory. Make a new directory called "server_certs" under by running ```mkdir server_certs``` if you do not have one . Now copy the server certificate to this new directory by running ```cp ~/server/ca_cert.pem server_certs/```. This is necessary to authenticate the server during the TLS handshake.
 
 Open the config menu by running ```idf.py menuconfig```. Navigate to **Example Configuration** and change **firmware upgrade url endpoint** to "https://_\<your IP\>_:8070/hello-world-unversioned.bin". Navigate to **Example Connection Configuration** and update the WiFi credentials with your SSID and password. Finally, navigate to **Partition Table -> Partition Table** and change it "Factory app, two OTA definitions". Now exit the configuration and save your changes.
 
@@ -123,11 +123,12 @@ In the final 2 examples, we will run the last OTA project and see the anti-rollb
 
 Open the config menu by running ```idf.py menuconfig``` and change the following settings:
 
-* **Bootloader config -> Enable app rollback support**: enable
-* **Bootloader config -> Enable app anti-rollback support**: enable
-* **Bootloader config -> Emulate operations with efuse secure version(only test)**: enable (_**VERY IMPORTANT**_)
-* **Serial flasher config -> Flash size**: change to 4 MB to support the larger image size.
-* **Partition Table -> Partition Table**: change to "Custom partition table CSV"
+* **Bootloader config -> Enable app rollback support**: Enable
+* **Bootloader config -> Enable app anti-rollback support**: Enable
+* **Bootloader config -> Emulate operations with efuse secure version(only test)**: Enable (_**VERY IMPORTANT**_)
+* **Serial flasher config -> Flash size**: Change to 4 MB to support the larger image size.
+* **Partition Table -> Partition Table**: Change to "Custom partition table CSV"
+* **Partition Table -> Partition Table**: Increase offset to "0x9000"
 * **Example Configuration -> Firmware Upgrade URL**: change to "https://_\<your IP\>_:8070/hello-world-version-2.bin"
 * **Example Connection Configuration**: set your WiFi SSID and WiFi Password
 
