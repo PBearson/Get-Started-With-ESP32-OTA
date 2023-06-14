@@ -12,6 +12,8 @@ We will see three examples. Aside from using different APIs, the major differenc
 
 #### Downloading examples
 
+**Note**: By default, this project is already located in the ``` ~/esp/IoT-Examples/ ``` directory of the Ubuntu VM.
+
 You can download all examples with the following command.
 ```
 git clone https://github.com/PBearson/Get-Started-With-ESP32-OTA.git
