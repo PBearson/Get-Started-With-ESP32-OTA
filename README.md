@@ -6,7 +6,7 @@ This page is intended to guide users through the OTA procedure for the ESP32. Th
 
 We will see three examples. Aside from using different APIs, the major differences are that simple_ota_example does not do a version check, native_ota_example does a version check (but not anti-rollback, so older firmware versions can still be downloaded), and advanced_https_ota supports both version check and anti-rollback. advanced_https_ota can also detect if the firmware has not been fully downloaded.
 
-All referenced projects come from the [ESP-IDF OTA examples directory](https://github.com/espressif/esp-idf/tree/master/examples/system/ota), with the exception of Hello World, which can be found [here](https://github.com/espressif/esp-idf/tree/master/examples/get-started/hello_world). The assumption is that you have set up ESP-IDF to version 4.* (e.g., 4.2).
+All referenced projects come from the [ESP-IDF OTA examples directory](https://github.com/espressif/esp-idf/tree/master/examples/system/ota), with the exception of Hello World, which can be found [here](https://github.com/espressif/esp-idf/tree/master/examples/get-started/hello_world). The assumption is that you have set up ESP-IDF to version 5.1.
 
 ### Notes
 
@@ -19,7 +19,7 @@ You can download all examples with the following command.
 git clone https://github.com/PBearson/Get-Started-With-ESP32-OTA.git
 ```
 
-But really, we only need the hello_world example since all other examples are part of the Espressif IoT Development Framework (esp-idf) already installed. But go ahead to download all examples in this repository so that you get the hello_world example easily. If interested, please refer to the [original OTA example docs](https://github.com/espressif/esp-idf/tree/master/examples/system/ota).
+But really, we only need the hello_world example since all other examples are part of the Espressif IoT Development Framework (esp-idf) that is already installed. But go ahead to download all examples in this repository so that you get the hello_world example easily. If interested, please refer to the [original OTA example docs](https://github.com/espressif/esp-idf/tree/release/v5.1/examples/system/ota).
 
 #### Bridged Adapter for Ubuntu
 Before you move forward, make sure the provided Ubuntu VM uses the bridged adapter so that it will get an IP, which will be in the same subnet of our IoT kit. Here is how you configure it:
@@ -29,12 +29,12 @@ Before you move forward, make sure the provided Ubuntu VM uses the bridged adapt
 For each example project, make sure you change the flash size to 4MB since the OTA needs more flash. Here is how you do it with the settings of an example project:
 * Settings -> Serial flasher config -> Flash size to 4MB.
 
-#### Simple https web server
-We will start a simple https web server using openssl. You can create a folder called "server" within /home/iot. The server folder will host the https web server's private key, self-signed certificate and the firmware for upgrading.
+#### Simple HTTPS web server
+We will start a simple HTTPS web server using OpenSSL. You can create a folder called "server" within /home/iot. The server folder will host the HTTPS web server's private key, self-signed certificate, and the firmware for upgrading.
 
 ## Prepare the OTA Firmware Images
 
-We are going to prepare 3 different versions of the "Hello World" firmware: 1) no version; 2) app version 1 without anti-rollback support; 3) app version 2 with anti-rollback support and security version 1.
+We are going to prepare three different versions of the "Hello World" firmware: 1) no version; 2) app version 1 without anti-rollback support; 3) app version 2 with anti-rollback support and security version 1.
 
 ### Unversioned App
 
@@ -42,7 +42,7 @@ Navigate to the "hello_world/" directory and run ```idf.py build```, which will 
 
 ### App Version 1
 
-To specify the app version, run ```idf.py menuconfig``` and enable the option **Application Manager -> Get the project version from Kconfig**. Now a new option appears that says **Project version**, which is set to 1 by default. Leave it as is. Exit the config menu and make sure to **save your changes**. Re-run the build command ```idf.py build``` to incorporate these changes into the firmware. Please copy this image/firmware, which is located in the  to the server directory /home/iot/server.
+To specify the app version, run ```idf.py menuconfig``` and enable the option **Application Manager -> Get the project version from Kconfig**. Now a new option appears that says **Project version**, which is set to 1 by default. Leave it as is. Exit the config menu and make sure to **save your changes**. Re-run the build command ```idf.py build``` to incorporate these changes into the firmware. Please copy this image/firmware, which is located in the server directory /home/iot/server.
 
 Optionally, you can run this firmware now to confirm that the app detects the version. Run ```idf.py flash monitor``` to upload the firmware and monitor the console output from the device. In the bootloader log, you should see the version detection, as shown below:
 
@@ -62,7 +62,7 @@ Optionally, you can run this firmware now to confirm that the app detects the ve
 
 ## Start the Web Server
 
-The next step is to start the web server at our Ubuntu VM. If you are working within a virtual machine (VM) using something like VirtualBox, then you should modify the network settings of your VM to use a bridged adapter rather than NAT (the default) so that the Ubuntu VM and our IoT kit will be in the same subnet. We will use OpenSSL to run a simple HTTPS server on our local machine. Since your ESP32 must be able to access this server, you need to ensure your machine is accessible to the local network and does not block traffic to the chosen HTTP port (in my case, it will be 8070). 
+The next step is to start the web server on our Ubuntu VM. If you are working within a virtual machine (VM) using something like VirtualBox, then you should modify the network settings of your VM to use a bridged adapter rather than NAT (the default) so that the Ubuntu VM and our IoT kit will be in the same subnet. We will use OpenSSL to run a simple HTTPS server on our local machine. Since your ESP32 must be able to access this server, you need to ensure your machine is accessible to the local network and does not block traffic to the chosen HTTP port (in my case, it will be 8070). 
 
 At this point, I would advise you to open a separate terminal window, since this is where the server will be running. First, make a note of your IP address by running the command ```ifconfig```.  Navigate to the "server" directory and generate a server keypair and certificate using the following command 
 * ```openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ca_key.pem -out ca_cert.pem```. 
@@ -95,7 +95,7 @@ Open the config menu by running ```idf.py menuconfig``` and change the following
 
 Build and run your app using ```idf.py flash monitor```.
 
-Although the process is very similar to the previous example, you may notice 2 points of interest. First, we can see that the app version is detected during the compilation, as shown in the output from the build step:
+Although the process is very similar to the previous example, you may notice two points of interest. First, we can see that the app version is detected during the compilation, as shown in the output from the build step:
 
 ![Native OTA Build](images/native-ota-initial-version.JPG)
 
@@ -150,6 +150,6 @@ Now we will change the security version of the firmware and see what happens whe
 
 Now build and run using ```idf.py flash monitor```.
 
-After the firmware connects to the server and downloads the OTA update, you will promptly be greeted with an error stating that the new firmware has a lower security version than the current firmware. Then the OTA update is deleted and the device reboots. This confirms that the anti-rollback mechanism works as intended.
+After the firmware connects to the server and downloads the OTA update, you will promptly be greeted with an error stating that the new firmware has a lower security version than the current firmware. Then the OTA update is deleted, and the device reboots. This confirms that the anti-rollback mechanism works as intended.
 
 ![Advanced OTA Anti-Rollback](images/advanced_https_ota_anti_rollback.JPG)
