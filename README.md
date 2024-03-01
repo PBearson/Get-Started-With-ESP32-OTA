@@ -6,7 +6,8 @@ This page is intended to guide users through the OTA procedure for the ESP32. Th
 
 We will see three examples. Aside from using different APIs, the major differences are that simple_ota_example does not do a version check, native_ota_example does a version check (but not anti-rollback, so older firmware versions can still be downloaded), and advanced_https_ota supports both version check and anti-rollback. advanced_https_ota can also detect if the firmware has not been fully downloaded.
 
-All referenced projects come from the [ESP-IDF OTA examples directory](https://github.com/espressif/esp-idf/tree/master/examples/system/ota), with the exception of Hello World, which can be found [here](https://github.com/espressif/esp-idf/tree/master/examples/get-started/hello_world). The assumption is that you have set up ESP-IDF to version 4.* (e.g., 4.2).
+All referenced projects come from the [ESP-IDF OTA examples directory](https://github.com/espressif/esp-idf/tree/master/examples/system/ota), with the exception of Hello World, which can be found [here](https://github.com/espressif/esp-idf/tree/master/examples/get-started/hello_world).
+<!-- The assumption is that you have set up ESP-IDF to version 4.* (e.g., 4.2). -->
 
 ### Command line commands v.s. ESP-IDF Explorer icons/shortcuts in VS Code 
 As we know, we can build a project through command line commands via *idf.py* or through the shortcuts on the status bar of ESP-IDF Explorer within VS Code. They are the same thing. This tutorial uses the command line commands in many places. However, related tasks can also be done through ESP-IDF Explorer within VS Code.
