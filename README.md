@@ -8,9 +8,8 @@ We will see three examples. Aside from using different APIs, the major differenc
 
 All referenced projects come from the [ESP-IDF OTA examples directory](https://github.com/espressif/esp-idf/tree/master/examples/system/ota), with the exception of Hello World, which can be found [here](https://github.com/espressif/esp-idf/tree/master/examples/get-started/hello_world). The assumption is that you have set up ESP-IDF to version 4.* (e.g., 4.2).
 
-### Notes
-
-#### Command line commands v.s. ESP-IDF Explorer icons/shortcuts in VS Code 
+### Command line commands v.s. ESP-IDF Explorer icons/shortcuts in VS Code 
+As we know, we can build a project through command line commands via *idf.py* or through the shortcuts on the status bar of ESP-IDF Explorer within VS Code. They are the same thing. This tutorial uses the command line commands in many places. However, related tasks can also be done through ESP-IDF Explorer within VS Code.
 
 - idf.py build ---> ESP-IDF: Build project
 - idf.py menuconfig ---> ESP-IDF: SDK Configuration Editor (meniconfig)
@@ -18,6 +17,8 @@ All referenced projects come from the [ESP-IDF OTA examples directory](https://g
 - idf.py monitor ----> ESP-IDF: Monitor Device
 
 <img src="images/WiFi-Station.PNG" width=640>
+
+### Notes
 
 #### Downloading examples
 
