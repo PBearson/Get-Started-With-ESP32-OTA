@@ -10,6 +10,10 @@ All referenced projects come from the [ESP-IDF OTA examples directory](https://g
 
 ### Notes
 
+#### Command line commands v.s. ESP-IDF Explorer icons/shortcuts in VS Code 
+
+<img src="images/WiFi-Station.PNG" width=512>
+
 #### Downloading examples
 
 **Note**: By default, this project is already located in the ``` ~/esp/IoT-Examples/ ``` directory of the Ubuntu VM.
