@@ -12,6 +12,11 @@ All referenced projects come from the [ESP-IDF OTA examples directory](https://g
 
 #### Command line commands v.s. ESP-IDF Explorer icons/shortcuts in VS Code 
 
+idf.py build ---> ESP-IDF: Build project
+idf.py menuconfig ---> ESP-IDF: SDK Configuration Editor (meniconfig)
+idf.py flash ---> ESP-IDF: Flash Device
+idf.py monitor ----> ESP-IDF: Monitor Device
+
 <img src="images/WiFi-Station.PNG" width=640>
 
 #### Downloading examples
