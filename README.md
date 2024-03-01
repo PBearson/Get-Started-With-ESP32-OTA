@@ -12,7 +12,7 @@ All referenced projects come from the [ESP-IDF OTA examples directory](https://g
 
 #### Command line commands v.s. ESP-IDF Explorer icons/shortcuts in VS Code 
 
-<img src="images/WiFi-Station.PNG" width=512>
+<img src="images/WiFi-Station.PNG" width=640>
 
 #### Downloading examples
 
