@@ -77,7 +77,6 @@ Optionally, you can run this firmware now to confirm that the app detects the ve
 
 ## 4. Run the simple_ota_example Project
 
-### Run simple_ota_example
 Leave the server running and return to the original terminal. We are going to run the first OTA project now. Navigate to the "simple_ota_example" directory. Make a new directory called "server_certs" under by running ```mkdir server_certs``` if you do not have one . Now copy the server certificate to this new directory by running ```cp ~/server/ca_cert.pem server_certs/```. This is necessary to authenticate the server during the TLS handshake.
 
 Open the config menu by running ```idf.py menuconfig``` and change the following settins
