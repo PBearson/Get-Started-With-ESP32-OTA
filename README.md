@@ -83,12 +83,12 @@ Open the config menu by running ```idf.py menuconfig``` and change the following
 
 * **Serial flasher config -> Flash size**: change to 4 MB to support the larger image size.
 * **Partition Table -> Partition Table**: change to "Factory app, two OTA definitions"
-* **Example Configuration** -> **firmware upgrade url endpoint**: change to "https://_\<your IP\>_:8070/hello-world-unversioned.bin".
+* **Example Configuration** -> **firmware upgrade url endpoint**: change to "https://_\<your IP\>_:8070/hello-world.bin".
 * **Example Connection Configuration**: update the WiFi credentials with your SSID and password
 
 Now exit the configuration and save your changes.
 
-Build and run the firmware using ```idf.py flash monitor```. The app will start by running the OTA firmware, which will try to connect to your running HTTPS server. If all goes well, you will see the ESP32 download the "hello-world-unversioned.bin" firmware, reset the system, and begin running the updated firmware.
+Build and run the firmware using ```idf.py flash monitor```. The app will start by running the OTA firmware, which will try to connect to your running HTTPS server. If all goes well, you will see the ESP32 download the "hello-world.bin" firmware, reset the system, and begin running the updated firmware.
 
 ## (Optional) Run the native_ota_example Project
 
