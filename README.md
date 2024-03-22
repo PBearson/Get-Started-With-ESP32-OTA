@@ -38,7 +38,7 @@ Before you move forward, make sure the provided Ubuntu VM uses the bridged adapt
 ## 2. Start the Web Server
 We will start a simple https web server using openssl within Ubuntu VM. You can create a folder called "server" within /home/iot. The server folder will host the https web server's private key, self-signed certificate and the firmware for upgrading.
 
-We will use OpenSSL to run a simple HTTPS server on our local machine. Since your ESP32 must be able to access this server, you need to ensure your machine is accessible to the local network and does not block traffic to the chosen HTTP port (in my case, it will be 8070). 
+We will use OpenSSL to run a simple HTTPS server on Ubuntu VM. Since your ESP32 must be able to access this server, you need to ensure Ubuntu VM is accessible to the local network and does not block traffic to the chosen HTTP port (in my case, it will be 8070). 
 
 At this point, I would advise you to open a separate terminal window, since this is where the server will be running. First, make a note of your IP address by running the command ```ifconfig```.  Navigate to the "server" directory and generate a server keypair and certificate using the following command 
 * ```openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ca_key.pem -out ca_cert.pem```
